@@ -1,0 +1,257 @@
+Build the JayneBou.com website using placeholder assets wherever final images are not yet available.
+
+IMPORTANT:
+This site must be built so that placeholder images can later be swapped out easily without changing layouts, proportions, spacing, or component structure. Use the exact file paths below for final asset placement, but if files do not yet exist, automatically fall back to clean, attractive placeholders with the same intended aspect ratios and display behaviour.
+
+GENERAL RULES
+- Do not block or break the build if any image file is missing.
+- Use graceful fallbacks everywhere.
+- Keep all image containers and layout boxes fixed to the intended aspect ratios so the finished site design remains stable when final artwork is added later.
+- Use responsive image containers with object-fit rules appropriate to the asset type.
+- Avoid layout shift when replacing placeholders with final assets.
+- All placeholder graphics should feel polished, premium, and consistent with the site brand.
+- Use subtle neutral placeholders with labels such as:
+  - "Logo Placeholder"
+  - "Jayne Character Placeholder"
+  - "Product Image Placeholder"
+  - "Guide Image Placeholder"
+  - "Hero Image Placeholder"
+  - "Video Placeholder"
+- Use CSS or inline SVG placeholder blocks if needed.
+- The site should look intentional even before final assets are supplied.
+
+BRAND / STYLE DIRECTION
+- Premium but approachable hi-fi / audio specialist website
+- Friendly, knowledgeable, slightly playful tone
+- Clear trust-building layout
+- Strong editorial feel, not generic ecommerce clutter
+- Since products are sold via eBay rather than direct checkout, design the site as a brand, trust, education, and lead-generation site with external links to listings
+- Make the visual design elegant, modern, and clean
+- Ensure accessibility, mobile responsiveness, and fast loading
+
+IMAGE IMPLEMENTATION RULES
+- Build a central reusable image component or helper for handling:
+  - primary src
+  - fallback placeholder
+  - alt text
+  - fixed aspect ratio
+  - object-fit behaviour
+- Prefer loading local files first from /public
+- If missing, show a designed placeholder inside the same dimensions
+- Do not allow broken image icons
+- Use lazy loading for non-critical images
+- Prioritise hero/logo imagery appropriately
+
+FINAL ASSET PATHS AND EXPECTED MASTER SIZES
+These are the final file paths the site should support. Build using these paths now, but fall back to placeholders if files are missing.
+
+LOGOS
+1. /public/logo/jayne-bou-audio-logo.svg
+   intended use: main logo
+   expected final format: SVG
+   design artboard guidance: approx 1200 x 400 proportion
+   display behaviour: contain, never crop
+
+2. /public/logo/jayne-bou-audio-logo.png
+   intended use: fallback raster logo
+   expected final size: 2000 x 700 px
+   transparent background
+   display behaviour: contain, never crop
+
+3. /public/logo/jayne-bou-audio-mark.png
+   intended use: icon-only logo mark
+   expected final size: 1000 x 1000 px
+   transparent background
+   display behaviour: contain, never crop
+
+4. /public/favicon.ico
+   intended source master: 512 x 512 px square
+   use for browser favicon
+
+5. /public/apple-touch-icon.png
+   expected final size: 180 x 180 px
+   may be generated from the same 512 x 512 master source
+
+JAYNE CHARACTER FILES
+These should all be implemented with placeholder art blocks now, but the layout must expect transparent PNG cut-outs later.
+
+6. /public/jayne/jayne-default.png
+   expected final size: 1600 x 2000 px
+   transparent PNG
+   intended use: default neutral Jayne
+
+7. /public/jayne/jayne-expressive.png
+   expected final size: 1600 x 2000 px
+   transparent PNG
+   intended use: playful / expressive version
+
+8. /public/jayne/jayne-guide.png
+   expected final size: 1600 x 2000 px
+   transparent PNG
+   intended use: pointing / explaining sections
+
+9. /public/jayne/jayne-trust.png
+   expected final size: 1600 x 2000 px
+   transparent PNG
+   intended use: approval / reassurance sections
+
+10. /public/jayne/jayne-tech.png
+    expected final size: 1600 x 2000 px
+    transparent PNG
+    intended use: hi-fi / technical guidance sections
+
+11. /public/jayne/jayne-teacher.png
+    expected final size: 1600 x 2000 px
+    transparent PNG
+    intended use: educational content sections
+
+12. /public/jayne/jayne-hero-listening.png
+    expected final size: 2200 x 1600 px
+    intended use: hero scene artwork
+    display behaviour: cover within hero composition as needed
+
+13. /public/jayne/jayne-packing.png
+    expected final size: 1800 x 1400 px
+    intended use: packing / inspection / shipping trust section
+
+14. /public/jayne/jayne-contact.png
+    expected final size: 1600 x 2000 px
+    transparent PNG
+    intended use: contact page welcoming artwork
+
+OPTIONAL ANIMATIONS
+15. /public/jayne/anim/jayne-blink.gif
+    expected final size: 600 x 750 px
+    intended use: subtle animated insert
+
+16. /public/jayne/anim/jayne-point.gif
+    expected final size: 700 x 900 px
+
+17. /public/jayne/anim/jayne-listen.gif
+    expected final size: 700 x 900 px
+
+PRODUCT PLACEHOLDERS
+18. /public/products/product-01.jpg
+19. /public/products/product-02.jpg
+20. /public/products/product-03.jpg
+21. /public/products/product-04.jpg
+22. /public/products/product-05.jpg
+23. /public/products/product-06.jpg
+
+For all product images:
+- expected final size: 1600 x 1600 px
+- square format
+- display behaviour: cover inside square product cards
+- build product cards now using square placeholder images
+
+GUIDE / CONTENT IMAGES
+24. /public/images/learn-watts.jpg
+25. /public/images/learn-active-vs-passive.jpg
+26. /public/images/learn-valve-vs-transistor.jpg
+27. /public/images/learn-warm-vs-bright.jpg
+
+For all guide images:
+- expected final size: 1600 x 900 px
+- display behaviour: cover in article cards / educational panels
+
+28. /public/images/about-hero.jpg
+    expected final size: 2200 x 1400 px
+    use for About page hero / story section
+
+29. /public/images/shipping-packaging.jpg
+    expected final size: 1800 x 1200 px
+    use for shipping / care / trust section
+
+30. /public/images/video-placeholder.jpg
+    expected final size: 1600 x 900 px
+    use for embedded video area or media teaser
+
+PLACEHOLDER DESIGN SPECIFICATION
+Create elegant placeholders that visually match the intended asset type:
+- Logo placeholders: simple bordered transparent-style block with text label
+- Character placeholders: softly coloured silhouette or illustrated panel with “Jayne Character Placeholder”
+- Product placeholders: square product card style placeholder with subtle gradient and label
+- Guide images: editorial landscape placeholder with label
+- Hero placeholders: larger premium composition placeholder
+- Video placeholder: landscape media block with play icon
+
+Use muted, premium colours that match a hi-fi brand:
+- warm off-white / charcoal / soft gold / muted beige / deep slate
+- keep it tasteful, not loud
+
+LAYOUT / COMPONENT REQUIREMENTS
+Build the following pages and sections using placeholders where needed:
+
+1. HOME PAGE
+- Header with logo
+- Hero section with placeholder hero artwork and headline
+- Intro to Jayne Bou Audio
+- Featured products section with 6 placeholder product cards linking out to eBay
+- Why buy from Jayne section
+- Educational / buyer guide teaser cards
+- Trust / packaging section
+- Contact CTA
+- Footer
+
+2. ABOUT PAGE
+- About hero image placeholder
+- Brand story
+- Why this business exists
+- Trust and service messaging
+- Optional Jayne character placements
+
+3. PRODUCTS / FEATURED GEAR PAGE
+- Grid of featured product cards
+- External CTA buttons to eBay listings
+- Space for short commentary / “why it’s interesting”
+- Placeholder images locked to square ratio
+
+4. LEARN / GUIDES PAGE
+- Cards or sections for:
+  - Watts explained
+  - Active vs passive
+  - Valve vs transistor
+  - Warm vs bright sound
+- Use 16:9 image placeholders for all guide headers
+
+5. SHIPPING / TRUST SECTION OR PAGE
+- Packaging placeholder image
+- Copy around careful packing, inspection, realistic descriptions, and buyer confidence
+
+6. CONTACT PAGE
+- Contact form
+- Friendly introduction
+- Jayne contact placeholder character image
+- Optional FAQs
+
+TECHNICAL REQUIREMENTS
+- Use a clean reusable component architecture
+- Use responsive design throughout
+- Preserve image aspect ratios with CSS wrappers
+- Use proper alt text for final accessibility
+- Where placeholders are shown, use sensible alt text too
+- Keep file references central so assets can be swapped later with minimal editing
+- Ensure the design remains polished even before real assets arrive
+- Build with production-ready structure, not a throwaway mock-up
+
+IMAGE RATIO IMPLEMENTATION CHEAT SHEET
+Use these aspect ratios in layout now:
+
+- Main logo: approximately 3:1
+- Logo mark: 1:1
+- Jayne cut-out characters: 4:5 portrait
+- Jayne hero listening scene: 11:8 approx
+- Packing image: 9:7 approx
+- Product images: 1:1
+- Guide images: 16:9
+- About hero: 11:7 approx
+- Shipping image: 3:2
+- Video placeholder: 16:9
+
+FINAL IMPORTANT BEHAVIOUR
+- The site must look complete with placeholders
+- The site must require minimal or no layout changes once real files are dropped into the specified /public paths
+- Missing images should never look like errors
+- Treat placeholders as intentional temporary art direction, not broken assets
+
+Please implement the full site structure now with all placeholder handling built in.

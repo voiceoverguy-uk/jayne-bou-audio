@@ -1,149 +1,182 @@
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod/v4';
+import { SmartImage } from '@/components/ui/smart-image';
+import { jayne } from '@/lib/assets';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Button } from '@/components/ui/button';
 import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Mail, MapPin, Send } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
+import { CheckCircle } from 'lucide-react';
+
+const contactSchema = z.object({
+  name: z.string().min(2, 'Please enter your name'),
+  email: z.email('Please enter a valid email address'),
+  subject: z.string().min(2, 'Please add a subject'),
+  message: z.string().min(10, 'Please write at least 10 characters'),
+});
+
+type ContactForm = z.infer<typeof contactSchema>;
+
+const faqs = [
+  { q: 'Do you ship internationally?', a: 'Yes, we ship worldwide. Shipping costs and timescales vary by destination — please contact us before purchasing if you\'re outside the UK and want a quote.' },
+  { q: 'What condition grades do you use?', a: 'We use Near Mint, Excellent, Very Good, Good, and Fair. Each grade is clearly defined in the listing, with photos of any marks or flaws.' },
+  { q: 'Can I collect in person?', a: 'In some cases, yes. Get in touch to discuss — we\'re flexible where it makes sense.' },
+  { q: 'What if something arrives damaged?', a: 'Contact us immediately with photos. We photograph our packaging before dispatch and will work with you to resolve any issues quickly.' },
+  { q: 'Do you take part-exchange?', a: 'Occasionally, depending on what you have. Drop us a message with details of what you\'re looking to trade and what you\'re interested in.' },
+];
 
 export default function Contact() {
-  const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false);
-      toast({
-        title: "Message Sent",
-        description: "Thank you for reaching out. We'll get back to you shortly.",
-      });
-      (e.target as HTMLFormElement).reset();
-    }, 1500);
-  };
+  const form = useForm<ContactForm>({
+    resolver: zodResolver(contactSchema),
+    defaultValues: { name: '', email: '', subject: '', message: '' },
+  });
+
+  function onSubmit(data: ContactForm) {
+    console.log('Contact form submitted:', data);
+    setSubmitted(true);
+  }
 
   return (
-    <div className="pt-32 pb-24 min-h-screen bg-background relative">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-        
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
-          
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h1 className="font-display text-5xl md:text-6xl font-bold mb-6">START A PROJECT</h1>
-            <p className="text-xl text-muted-foreground font-light leading-relaxed mb-12">
-              Ready to elevate your sound? Tell me about your project, timeline, and what you're looking to achieve. I'll get back to you within 24 hours with a custom quote.
-            </p>
+    <div className="w-full pt-20">
+      <section className="py-14 md:py-20 bg-background" data-testid="section-contact">
+        <div className="max-w-7xl mx-auto px-6 md:px-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
 
-            <div className="space-y-8">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-card border border-white/5 rounded-full flex items-center justify-center shrink-0">
-                  <Mail className="w-5 h-5 text-primary" />
+            {/* FORM */}
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-3">Get in Touch</p>
+              <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Let's Talk Hi-Fi</h1>
+              <p className="text-muted-foreground leading-relaxed mb-8">
+                Whether you have a question about a listing, want advice on what to buy, or just want to chat about audio — I'm genuinely happy to hear from you. I aim to reply within one business day.
+              </p>
+
+              {submitted ? (
+                <div className="p-8 rounded-md bg-card border border-border flex flex-col items-center text-center gap-4" data-testid="contact-success">
+                  <CheckCircle className="w-12 h-12 text-primary" />
+                  <h2 className="text-xl font-bold text-foreground">Message Received</h2>
+                  <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
+                    Thank you for getting in touch. I'll be back to you within one business day.
+                  </p>
+                  <button
+                    onClick={() => { setSubmitted(false); form.reset(); }}
+                    className="text-sm text-primary font-semibold hover:opacity-80 transition-opacity"
+                    data-testid="button-send-another"
+                  >
+                    Send another message
+                  </button>
                 </div>
-                <div>
-                  <h4 className="font-display text-lg font-bold mb-1">Email</h4>
-                  <a href="mailto:hello@jaynebouaudio.com" className="text-muted-foreground hover:text-primary transition-colors">
-                    hello@jaynebouaudio.com
-                  </a>
+              ) : (
+                <Form {...form}>
+                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5" data-testid="form-contact">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                      <FormField
+                        control={form.control}
+                        name="name"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Your Name</FormLabel>
+                            <FormControl>
+                              <Input placeholder="Jane Smith" data-testid="input-name" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Email Address</FormLabel>
+                            <FormControl>
+                              <Input type="email" placeholder="jane@example.com" data-testid="input-email" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                    <FormField
+                      control={form.control}
+                      name="subject"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Subject</FormLabel>
+                          <FormControl>
+                            <Input placeholder="Question about a listing..." data-testid="input-subject" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="message"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Message</FormLabel>
+                          <FormControl>
+                            <Textarea
+                              rows={6}
+                              placeholder="Tell me what you're looking for or what you'd like to know..."
+                              data-testid="input-message"
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <Button type="submit" data-testid="button-contact-submit" className="w-full sm:w-auto">
+                      Send Message
+                    </Button>
+                  </form>
+                </Form>
+              )}
+            </div>
+
+            {/* RIGHT COLUMN */}
+            <div className="flex flex-col gap-10">
+              <div className="flex justify-center">
+                <div className="w-full max-w-xs">
+                  <SmartImage
+                    src={jayne.contact}
+                    fallbackLabel="Jayne Contact Placeholder"
+                    alt="Jayne welcoming you to get in touch"
+                    aspectRatio="4/5"
+                    objectFit="contain"
+                    className="w-full"
+                  />
                 </div>
               </div>
 
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-card border border-white/5 rounded-full flex items-center justify-center shrink-0">
-                  <MapPin className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <h4 className="font-display text-lg font-bold mb-1">Studio Location</h4>
-                  <p className="text-muted-foreground">
-                    Los Angeles, CA<br/>
-                    (In-person sessions by appointment only)
-                  </p>
+              {/* FAQs */}
+              <div>
+                <h2 className="text-xl font-bold text-foreground mb-5">Frequently Asked Questions</h2>
+                <div className="space-y-4">
+                  {faqs.map((faq) => (
+                    <div key={faq.q} className="border-b border-border pb-4" data-testid="faq-item">
+                      <h3 className="font-semibold text-foreground text-sm mb-1.5">{faq.q}</h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{faq.a}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
-          </motion.div>
-
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="glass-panel p-8 md:p-10 rounded-sm"
-          >
-            <form onSubmit={handleSubmit} className="space-y-6">
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label htmlFor="name" className="text-sm font-medium tracking-wide uppercase text-muted-foreground">Name</label>
-                  <input 
-                    type="text" 
-                    id="name" 
-                    required
-                    className="w-full bg-background border border-border px-4 py-3 text-foreground focus:outline-none focus:border-primary transition-colors"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-medium tracking-wide uppercase text-muted-foreground">Email</label>
-                  <input 
-                    type="email" 
-                    id="email" 
-                    required
-                    className="w-full bg-background border border-border px-4 py-3 text-foreground focus:outline-none focus:border-primary transition-colors"
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <label htmlFor="service" className="text-sm font-medium tracking-wide uppercase text-muted-foreground">Service Needed</label>
-                <select 
-                  id="service" 
-                  className="w-full bg-background border border-border px-4 py-3 text-foreground focus:outline-none focus:border-primary transition-colors appearance-none"
-                >
-                  <option>Mixing</option>
-                  <option>Mastering</option>
-                  <option>Mixing & Mastering</option>
-                  <option>Vocal Production</option>
-                  <option>Other</option>
-                </select>
-              </div>
-
-              <div className="space-y-2">
-                <label htmlFor="message" className="text-sm font-medium tracking-wide uppercase text-muted-foreground">Project Details</label>
-                <textarea 
-                  id="message" 
-                  rows={5}
-                  required
-                  placeholder="Tell me about your track count, references, timeline..."
-                  className="w-full bg-background border border-border px-4 py-3 text-foreground focus:outline-none focus:border-primary transition-colors resize-none"
-                ></textarea>
-              </div>
-
-              <div className="space-y-2">
-                <label htmlFor="link" className="text-sm font-medium tracking-wide uppercase text-muted-foreground">Rough Mix / Demo Link (Optional)</label>
-                <input 
-                  type="url" 
-                  id="link" 
-                  placeholder="Dropbox, Google Drive, Soundcloud..."
-                  className="w-full bg-background border border-border px-4 py-3 text-foreground focus:outline-none focus:border-primary transition-colors"
-                />
-              </div>
-
-              <button 
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full py-4 bg-primary text-primary-foreground font-bold tracking-widest uppercase flex items-center justify-center gap-2 hover:bg-primary/90 transition-all shadow-[var(--shadow-gold)] disabled:opacity-70 disabled:cursor-not-allowed"
-              >
-                {isSubmitting ? 'Sending...' : (
-                  <>Send Message <Send className="w-4 h-4" /></>
-                )}
-              </button>
-            </form>
-          </motion.div>
-
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }
