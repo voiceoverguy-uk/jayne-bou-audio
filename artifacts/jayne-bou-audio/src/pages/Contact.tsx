@@ -34,17 +34,33 @@ const faqs = [
   { q: 'Do you take part-exchange?', a: 'Occasionally, depending on what you have. Drop us a message with details of what you\'re looking to trade and what you\'re interested in.' },
 ];
 
+const API_URL = (import.meta.env.VITE_API_URL as string | undefined) ?? '';
+
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const form = useForm<ContactForm>({
     resolver: zodResolver(contactSchema),
     defaultValues: { name: '', email: '', subject: '', message: '' },
   });
 
-  function onSubmit(data: ContactForm) {
-    console.log('Contact form submitted:', data);
-    setSubmitted(true);
+  async function onSubmit(data: ContactForm) {
+    setSubmitError(null);
+    try {
+      const res = await fetch(`${API_URL}/api/contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) {
+        const json = await res.json().catch(() => ({}));
+        throw new Error((json as { error?: string }).error ?? 'Something went wrong. Please try again.');
+      }
+      setSubmitted(true);
+    } catch (err) {
+      setSubmitError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
+    }
   }
 
   return (
@@ -138,8 +154,16 @@ export default function Contact() {
                         </FormItem>
                       )}
                     />
-                    <Button type="submit" data-testid="button-contact-submit" className="w-full sm:w-auto">
-                      Send Message
+                    {submitError && (
+                      <p className="text-sm text-red-600 font-medium" data-testid="contact-error">{submitError}</p>
+                    )}
+                    <Button
+                      type="submit"
+                      data-testid="button-contact-submit"
+                      className="w-full sm:w-auto"
+                      disabled={form.formState.isSubmitting}
+                    >
+                      {form.formState.isSubmitting ? 'Sending…' : 'Send Message'}
                     </Button>
                   </form>
                 </Form>
