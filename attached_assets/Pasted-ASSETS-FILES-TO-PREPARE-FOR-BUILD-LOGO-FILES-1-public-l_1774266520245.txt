@@ -1,0 +1,81 @@
+ASSETS / FILES TO PREPARE FOR BUILD
+
+LOGO FILES
+1. /public/logo/jayne-bou-audio-logo.svg
+   - main preferred logo
+   - transparent background
+   - best for header/footer and scaling
+
+2. /public/logo/jayne-bou-audio-logo.png
+   - fallback logo
+   - transparent background
+   - high resolution
+
+3. /public/logo/jayne-bou-audio-mark.png
+   - square or icon-only version if available
+   - for compact areas
+
+4. /public/favicon.ico
+   - browser tab favicon
+
+5. /public/apple-touch-icon.png
+   - mobile bookmark icon
+
+JAYNE CHARACTER FILES
+6. /public/jayne/jayne-default.png
+   - default neutral Jayne
+   - transparent background preferred
+
+7. /public/jayne/jayne-expressive.png
+   - personality / wink / playful version
+
+8. /public/jayne/jayne-guide.png
+   - pointing / explaining pose
+
+9. /public/jayne/jayne-trust.png
+   - thumbs up / approval pose
+
+10. /public/jayne/jayne-tech.png
+   - hi-fi context pose, e.g. headphones/cable
+
+11. /public/jayne/jayne-teacher.png
+   - schoolteacher / blackboard version
+
+12. /public/jayne/jayne-hero-listening.png
+   - Jayne sitting enjoying music with hi-fi system
+
+13. /public/jayne/jayne-packing.png
+   - Jayne packing or inspecting equipment
+
+14. /public/jayne/jayne-contact.png
+   - welcoming / gesture pose for contact page
+
+OPTIONAL JAYNE ANIMATION FILES
+15. /public/jayne/anim/jayne-blink.gif
+16. /public/jayne/anim/jayne-point.gif
+17. /public/jayne/anim/jayne-listen.gif
+
+PRODUCT IMAGE PLACEHOLDERS
+18. /public/products/product-01.jpg
+19. /public/products/product-02.jpg
+20. /public/products/product-03.jpg
+21. /public/products/product-04.jpg
+22. /public/products/product-05.jpg
+23. /public/products/product-06.jpg
+
+OPTIONAL CATEGORY / GENERIC IMAGES
+24. /public/images/learn-watts.jpg
+25. /public/images/learn-active-vs-passive.jpg
+26. /public/images/learn-valve-vs-transistor.jpg
+27. /public/images/learn-warm-vs-bright.jpg
+
+28. /public/images/about-hero.jpg
+29. /public/images/shipping-packaging.jpg
+30. /public/images/video-placeholder.jpg
+
+FORMATS PREFERRED
+- Logos: SVG first, PNG fallback
+- Character art: PNG with transparent background
+- Product photos: JPG or WEBP
+- Small animations: GIF or lightweight web-friendly format
+- Icons/favicons: ICO and PNG

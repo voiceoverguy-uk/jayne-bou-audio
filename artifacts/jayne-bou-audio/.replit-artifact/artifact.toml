@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Jayne Bou Audio"
+version = "1.0.0"
+id = "artifacts/jayne-bou-audio"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 25259
+
+[services.development]
+run = "pnpm --filter @workspace/jayne-bou-audio run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/jayne-bou-audio", "run", "build" ]
+publicDir = "artifacts/jayne-bou-audio/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "25259"
+BASE_PATH = "/"

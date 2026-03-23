@@ -1,0 +1,22 @@
+packages:
+  "framer-motion": "For cinematic page transitions and scroll-triggered animations"
+  "lucide-react": "For crisp, beautiful iconography"
+
+images:
+  - path: "artifacts/jayne-bou-audio/public/images/hero-bg.png"
+    description: "Cinematic, dimly lit professional audio recording studio control room with a large analog mixing console, glowing outboard gear, and studio monitors. Moody amber and deep blue lighting, photorealistic, extremely high quality, elegant."
+    aspect_ratio: "16:9"
+  - path: "artifacts/jayne-bou-audio/public/images/sound-wave.png"
+    description: "Abstract, elegant golden 3D fluid soundwave floating in a deep black void. Cinematic lighting, sophisticated, premium audio visualization."
+    aspect_ratio: "16:9"
+  - path: "artifacts/jayne-bou-audio/public/images/about-portrait.png"
+    description: "Artistic, moody silhouette of a female audio engineer in a professional recording booth. Warm rim lighting, cinematic depth of field, elegant and professional."
+    aspect_ratio: "3:4"
+  - path: "artifacts/jayne-bou-audio/public/images/texture-noise.png"
+    description: "Very subtle dark cinematic film grain texture, seamless pattern, nearly black with faint gray speckles."
+    aspect_ratio: "1:1"
+
+notes:
+  - This is a frontend-only portfolio site for now.
+  - Using Framer Motion for scroll reveals to enhance the cinematic feel.
+  - Dark mode is forced/default to maintain the elegant studio aesthetic.
