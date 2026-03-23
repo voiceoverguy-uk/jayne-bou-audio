@@ -12,7 +12,7 @@ interface SmartImageProps {
 
 function PlaceholderBlock({ label }: { label: string }) {
   return (
-    <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#1e2230] border border-[#2e3347]">
+    <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#1e2230]/30 border border-[#2e3347]/30">
       <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="mb-3 opacity-30">
         <rect x="1" y="1" width="38" height="38" rx="4" stroke="#b8962e" strokeWidth="1.5" strokeDasharray="4 3"/>
         <path d="M14 26l5-7 4 5 3-4 4 6H14z" fill="#b8962e" opacity="0.4"/>
