@@ -34,7 +34,9 @@ const faqs = [
   { q: 'Do you take part-exchange?', a: 'Occasionally, depending on what you have. Drop us a message with details of what you\'re looking to trade and what you\'re interested in.' },
 ];
 
-const API_URL = (import.meta.env.VITE_API_URL as string | undefined) ?? '';
+const API_URL = import.meta.env.DEV
+  ? ''
+  : ((import.meta.env.VITE_API_URL as string | undefined) ?? '');
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
