@@ -1,0 +1,47 @@
+Please fix the Vercel deployment issue for this repo properly and make the minimum safe changes needed.
+
+Context:
+- Deployment to Vercel is failing during pnpm install
+- Error says:
+  ERR_PNPM_LOCKFILE_CONFIG_MISMATCH
+  Cannot proceed with the frozen installation.
+  The current "overrides" configuration doesn't match the value found in the lockfile
+- Vercel also warns that a `builds` setting in config is overriding Project Settings
+- This is a pnpm workspace repo with multiple packages
+
+Your tasks:
+1. Inspect the root files first:
+   - package.json
+   - pnpm-lock.yaml
+   - pnpm-workspace.yaml
+   - vercel.json
+   - any package.json files in workspace apps/packages
+2. Find where `pnpm.overrides` or related package manager config has changed without the lockfile being regenerated
+3. Regenerate the lockfile correctly by running pnpm install with no frozen lockfile at the repo root
+4. Commit any required lockfile/config changes so the repo is consistent for CI/Vercel
+5. Remove or modernise any outdated `vercel.json` config that is causing the warning about `builds`, but only if safe to do so
+6. Do NOT make random speculative changes. Keep changes minimal and explain each one
+7. After fixing, verify the repo builds cleanly in the way Vercel expects
+
+Required actions:
+- Run from repo root:
+  pnpm install --no-frozen-lockfile
+- If that changes pnpm-lock.yaml, keep the updated lockfile
+- Check whether package.json contains a pnpm overrides block and ensure lockfile matches it
+- If vercel.json contains legacy `builds`, remove that section unless it is genuinely required
+- Make sure Vercel can use the normal project settings rather than conflicting config
+- Confirm the correct build command, install command, and root directory for Vercel
+- If this is a monorepo, identify which app is actually meant to deploy to Vercel
+
+Deliverables:
+- Apply the fix directly in the repo
+- Show me a short summary of:
+  1. what was broken
+  2. what files were changed
+  3. what I need to push to GitHub
+  4. any Vercel setting I still need to check manually
+
+Important:
+- Do not just say “fixed” unless you have actually updated the lockfile/config and verified the build
+- If there is more than one deployable app in the monorepo, tell me clearly which one Vercel should point at
+- Prefer the cleanest long-term fix, not a hack
