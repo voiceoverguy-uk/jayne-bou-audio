@@ -1,8 +1,8 @@
-import { Router, type IRouter, type Request, type Response } from "express";
+import { Router, type Request, type Response } from "express";
 import { Resend } from "resend";
 import { z } from "zod";
 
-const router: IRouter = Router();
+const router = Router();
 
 const contactSchema = z.object({
   name: z.string().min(2),
