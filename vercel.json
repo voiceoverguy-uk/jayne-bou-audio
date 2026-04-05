@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "buildCommand": "node artifacts/api-server/build.mjs && pnpm --filter @workspace/jayne-bou-audio run build",
+  "outputDirectory": "artifacts/jayne-bou-audio/dist/public",
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/index" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
