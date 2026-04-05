@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ArrowRight, ExternalLink, Loader2, ShoppingBag } from 'lucide-react';
+import { ArrowRight, ExternalLink, ShoppingBag } from 'lucide-react';
 
 const EBAY_STORE_URL = 'https://www.ebay.co.uk/str/jaynebouaudio';
 
