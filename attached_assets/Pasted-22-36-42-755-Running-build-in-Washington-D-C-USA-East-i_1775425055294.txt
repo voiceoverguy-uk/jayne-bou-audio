@@ -1,0 +1,57 @@
+22:36:42.755 Running build in Washington, D.C., USA (East) – iad1
+22:36:42.755 Build machine configuration: 2 cores, 8 GB
+22:36:42.898 Cloning github.com/voiceoverguy-uk/jayne-bou-audio (Branch: master, Commit: c6cc145)
+22:36:42.899 Previous build caches not available.
+22:36:43.587 Cloning completed: 689.000ms
+22:36:44.085 Running "vercel build"
+22:36:44.736 Vercel CLI 50.38.2
+22:36:44.868 WARNING! Due to `builds` existing in your configuration file, the Build and Development Settings defined in your Project Settings will not apply. Learn More: https://vercel.link/unused-build-settings
+22:36:45.469 > Detected ENABLE_EXPERIMENTAL_COREPACK=1 and "pnpm@10.26.1" in package.json
+22:36:45.810 Installing dependencies...
+22:36:45.872 ! Corepack is about to download https://registry.npmjs.org/pnpm/-/pnpm-10.26.1.tgz
+22:36:47.249 Scope: all 9 workspace projects
+22:36:47.398 ../..                                    | Progress: resolved 1, reused 0, downloaded 0, added 0
+22:36:47.465 ../..                                    | +493 ++++++++++++++++++++++++++++++++
+22:36:48.400 ../..                                    | Progress: resolved 493, reused 0, downloaded 32, added 9
+22:36:49.403 ../..                                    | Progress: resolved 493, reused 0, downloaded 163, added 67
+22:36:50.405 ../..                                    | Progress: resolved 493, reused 0, downloaded 261, added 118
+22:36:51.405 ../..                                    | Progress: resolved 493, reused 0, downloaded 293, added 132
+22:36:52.406 ../..                                    | Progress: resolved 493, reused 0, downloaded 304, added 136
+22:36:53.407 ../..                                    | Progress: resolved 493, reused 0, downloaded 370, added 164
+22:36:54.406 ../..                                    | Progress: resolved 493, reused 0, downloaded 465, added 203
+22:36:55.407 ../..                                    | Progress: resolved 493, reused 0, downloaded 493, added 282
+22:36:56.409 ../..                                    | Progress: resolved 493, reused 0, downloaded 493, added 296
+22:36:57.410 ../..                                    | Progress: resolved 493, reused 0, downloaded 493, added 368
+22:36:58.410 ../..                                    | Progress: resolved 493, reused 0, downloaded 493, added 479
+22:36:58.590 ../..                                    | Progress: resolved 493, reused 0, downloaded 493, added 493, done
+22:36:58.773 .../esbuild@0.27.3/node_modules/esbuild postinstall$ node install.js
+22:36:58.839 .../esbuild@0.27.3/node_modules/esbuild postinstall: Done
+22:36:59.478 
+22:36:59.479 dependencies:
+22:36:59.479 + @workspace/api-zod 0.0.0 <- ../../lib/api-zod
+22:36:59.480 + @workspace/db 0.0.0 <- ../../lib/db
+22:36:59.480 + cookie-parser 1.4.7
+22:36:59.480 + cors 2.8.6
+22:36:59.481 + drizzle-orm 0.45.1
+22:36:59.481 + express 5.2.1
+22:36:59.482 + pino 9.14.0
+22:36:59.482 + pino-http 10.5.0
+22:36:59.482 + resend 6.9.4
+22:36:59.482 + zod 3.25.76
+22:36:59.483 
+22:36:59.483 devDependencies:
+22:36:59.483 + @types/cookie-parser 1.4.10
+22:36:59.483 + @types/cors 2.8.19
+22:36:59.483 + @types/express 5.0.6
+22:36:59.484 + @types/node 25.3.5
+22:36:59.484 + esbuild 0.27.3
+22:36:59.484 + esbuild-plugin-pino 2.3.3
+22:36:59.484 + pino-pretty 13.1.3
+22:36:59.484 + thread-stream 3.1.0
+22:36:59.484 
+22:36:59.520 ../.. preinstall$ sh -c 'rm -f package-lock.json yarn.lock; case "$npm_config_user_agent" in pnpm/*) ;; *) echo "Use pnpm instead" >&2; exit 1 ;; esac'
+22:36:59.533 ../.. preinstall: Done
+22:36:59.655 Done in 12.8s using pnpm v10.26.1
+22:36:59.908 Using TypeScript 5.9.3 (local user-provided)
+22:37:01.735 Error: src/routes/health.ts(6,7): error TS2339: Property 'json' does not exist on type 'Response<any, Record<string, any>>'.
+22:37:01.736 
