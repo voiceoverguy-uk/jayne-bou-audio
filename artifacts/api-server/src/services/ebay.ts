@@ -16,6 +16,7 @@ interface CacheEntry {
 
 const CACHE_TTL_MS = 15 * 60 * 1000;
 let cache: CacheEntry | null = null;
+let staleCache: EbayListing[] | null = null;
 
 async function getAccessToken(clientId: string, clientSecret: string): Promise<string> {
   const credentials = Buffer.from(`${clientId}:${clientSecret}`).toString("base64");
@@ -48,10 +49,17 @@ export async function fetchEbayListings(): Promise<EbayListing[]> {
     throw new Error("EBAY_CREDENTIALS_MISSING");
   }
 
-  const token = await getAccessToken(clientId, clientSecret);
+  let token: string;
+  try {
+    token = await getAccessToken(clientId, clientSecret);
+  } catch (err) {
+    if (staleCache) return staleCache;
+    throw err;
+  }
 
   const url = new URL("https://api.ebay.com/buy/browse/v1/item_summary/search");
-  url.searchParams.set("sellers", sellerId);
+  // eBay Browse API requires seller filtering via the filter param: filter=sellers:{id}
+  url.searchParams.set("filter", `sellers:{${sellerId}}`);
   url.searchParams.set("limit", "50");
   url.searchParams.set("sort", "newlyListed");
 
@@ -65,6 +73,10 @@ export async function fetchEbayListings(): Promise<EbayListing[]> {
 
   if (!res.ok) {
     const text = await res.text();
+    if (staleCache) {
+      console.warn(`eBay Browse API failed (${res.status}), serving stale cache`);
+      return staleCache;
+    }
     throw new Error(`eBay Browse API failed (${res.status}): ${text}`);
   }
 
@@ -94,6 +106,7 @@ export async function fetchEbayListings(): Promise<EbayListing[]> {
   }));
 
   cache = { data: listings, fetchedAt: Date.now() };
+  staleCache = listings;
   return listings;
 }
 
