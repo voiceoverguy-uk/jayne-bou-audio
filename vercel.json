@@ -1,6 +1,6 @@
 {
   "buildCommand": "pnpm --filter @workspace/jayne-bou-audio run build",
-  "outputDirectory": "dist",
+  "outputDirectory": "public",
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/index" },
     { "source": "/(.*)", "destination": "/index.html" }

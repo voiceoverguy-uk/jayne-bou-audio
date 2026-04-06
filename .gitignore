@@ -50,3 +50,6 @@ Thumbs.db
 
 # Vercel build output (generated at build time)
 .vercel/output
+
+# Frontend build output (deployed to Vercel, not committed)
+/public
