@@ -91,7 +91,7 @@ export default function Home() {
               src={img.src}
               alt=""
               aria-hidden="true"
-              className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ${i === heroIndex ? 'opacity-30' : 'opacity-0'}`}
+              className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ${i === heroIndex ? 'opacity-55' : 'opacity-0'}`}
             />
           ))}
           {/* Gradient: strong dark on left for text legibility, lighter on right */}
