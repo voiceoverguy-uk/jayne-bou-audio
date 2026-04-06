@@ -1,0 +1,49 @@
+Stop making speculative fixes.
+
+I need you to diagnose why eBay listings appear in Replit Preview but not on the live Vercel site, where only the fallback message is shown.
+
+Do not just change files and claim it is fixed. I want hard evidence.
+
+Tasks:
+1. Identify the exact production API endpoint used by the live site to fetch listings.
+2. Test that endpoint locally and in production.
+3. Show me the exact JSON response from:
+   - local preview endpoint
+   - deployed Vercel production endpoint
+4. Add temporary diagnostic logging to the production API route and server code to log:
+   - whether EBAY_CLIENT_ID exists
+   - whether EBAY_CLIENT_SECRET exists
+   - whether EBAY_SELLER_ID exists
+   - whether OAuth token retrieval succeeds
+   - eBay API status code
+   - number of items returned
+   - any thrown error message
+   Do not print the secret values themselves, only whether they are present.
+5. Ensure the production API returns diagnostic JSON on failure instead of silently falling back, for example:
+   {
+     "ok": false,
+     "stage": "oauth" | "browse" | "config" | "unknown",
+     "message": "...",
+     "hasClientId": true,
+     "hasClientSecret": true,
+     "hasSellerId": true
+   }
+6. Verify whether the live frontend is calling:
+   - a relative path like /api/...
+   - an absolute URL
+   - the correct production domain
+7. Check whether Vercel build output and runtime are using the same entry point as local preview.
+8. Confirm whether the production serverless function is actually being invoked by checking logs tied to a real request.
+9. If there is caching, disable caching temporarily for the listings API route and force fresh data.
+10. If the API route fails, show me the exact failing file, line, and reason.
+
+After that, give me:
+- the exact production API URL to open in browser
+- the exact JSON I should see if it is working
+- the exact Vercel log line proving success or failure
+- the minimal code fix required
+
+Important:
+- No more “should be fixed”.
+- No more build theory without testing the deployed endpoint.
+- Prove the issue with real output from production.
