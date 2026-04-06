@@ -38,6 +38,9 @@ module.exports = async function handler(req, res) {
 
   // ── GET /api/debug — full live eBay test ─────────────────────────────────────
   if (url.includes("/debug")) {
+    const allEnvKeys = Object.keys(process.env).filter(k =>
+      !k.startsWith("AWS_") && !k.startsWith("VERCEL_") && k !== "PATH" && k !== "HOME"
+    ).sort();
     const diag = {
       hasClientId: !!CLIENT_ID,
       hasClientSecret: !!CLIENT_SECRET,
@@ -46,6 +49,7 @@ module.exports = async function handler(req, res) {
       clientIdPrefix: CLIENT_ID ? CLIENT_ID.slice(0, 16) + "..." : null,
       nodeVersion: process.version,
       nodeEnv: process.env.NODE_ENV,
+      visibleEnvKeys: allEnvKeys,
       oauthStage: null,
       browseStage: null,
       itemCount: null,
