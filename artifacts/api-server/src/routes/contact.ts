@@ -30,7 +30,9 @@ router.post("/contact", async (req: Request, res: Response) => {
   const toEmail = process.env.RESEND_TO_EMAIL ?? "jayne@jaynebou.com";
   const fromEmail = process.env.RESEND_FROM_EMAIL ?? "contact@jaynebou.com";
 
-  const { error } = await resend.emails.send({
+  console.log(`[contact] sending to="${toEmail}" from="${fromEmail}" subject="${subject}"`);
+
+  const { data, error } = await resend.emails.send({
     from: `Jayne Bou Audio <${fromEmail}>`,
     to: [toEmail],
     replyTo: email,
@@ -45,12 +47,13 @@ router.post("/contact", async (req: Request, res: Response) => {
   });
 
   if (error) {
-    console.error("Resend error:", error);
-    res.status(500).json({ error: "Failed to send email" });
+    console.error("[contact] Resend error:", JSON.stringify(error));
+    res.status(500).json({ error: "Failed to send email", detail: error });
     return;
   }
 
-  res.json({ ok: true });
+  console.log(`[contact] Resend accepted, id=${data?.id}`);
+  res.json({ ok: true, id: data?.id });
 });
 
 export default router;
