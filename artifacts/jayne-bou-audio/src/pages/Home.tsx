@@ -1,16 +1,18 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'wouter';
-import { ArrowRight, ShieldCheck, Truck, Star, Search } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Truck, Star, Search, ExternalLink } from 'lucide-react';
 import { SmartImage } from '@/components/ui/smart-image';
-import { jayne, products, images } from '@/lib/assets';
+import { jayne, images } from '@/lib/assets';
 
-const featuredProducts = [
-  { id: 1, src: products.p01, name: 'Product One', blurb: 'Lightly used, fully tested. A superb example.', ebayUrl: '#' },
-  { id: 2, src: products.p02, name: 'Product Two', blurb: 'Original boxes, minimal use. Exceptional condition.', ebayUrl: '#' },
-  { id: 3, src: products.p03, name: 'Product Three', blurb: 'Serviced and inspected. Ready to impress.', ebayUrl: '#' },
-  { id: 4, src: products.p04, name: 'Product Four', blurb: 'A classic piece in stunning shape.', ebayUrl: '#' },
-  { id: 5, src: products.p05, name: 'Product Five', blurb: 'Rare find. Fully operational and honest graded.', ebayUrl: '#' },
-  { id: 6, src: products.p06, name: 'Product Six', blurb: 'Immaculate. Comes with accessories.', ebayUrl: '#' },
-];
+interface Listing {
+  id: string;
+  title: string;
+  price: string;
+  currency: string;
+  condition: string;
+  imageUrl: string;
+  ebayUrl: string;
+}
 
 const guideCards = [
   { title: 'What Do Watts Actually Mean?', teaser: 'Power ratings can be confusing. Here\'s what really matters for your listening room.', src: images.learnWatts, slug: 'learn-watts' },
@@ -26,7 +28,42 @@ const trustPoints = [
   { icon: Star, title: 'Trusted Seller', body: 'Years of positive feedback on eBay. We stand behind every sale.' },
 ];
 
+function SkeletonCard() {
+  return (
+    <div className="bg-background rounded-md border border-border overflow-hidden animate-pulse">
+      <div className="aspect-square bg-muted" />
+      <div className="p-4 space-y-2">
+        <div className="h-3 bg-muted rounded w-3/4" />
+        <div className="h-3 bg-muted rounded w-1/2" />
+        <div className="h-3 bg-muted rounded w-1/3 mt-3" />
+      </div>
+    </div>
+  );
+}
+
+function conditionShort(condition: string): string {
+  const c = condition.toLowerCase();
+  if (c.includes('new')) return 'New';
+  if (c.includes('excellent')) return 'Excellent';
+  if (c.includes('very good')) return 'Very Good';
+  if (c.includes('good')) return 'Good';
+  return condition;
+}
+
 export default function Home() {
+  const [listings, setListings] = useState<Listing[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('/api/listings')
+      .then((r) => r.json())
+      .then((d: { listings: Listing[] }) => {
+        setListings(d.listings.slice(0, 6));
+      })
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, []);
+
   return (
     <div className="w-full">
 
@@ -96,7 +133,7 @@ export default function Home() {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
             <div>
               <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-2">Currently Listed</p>
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground">Featured Equipment</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground">Latest Equipment</h2>
             </div>
             <Link
               href="/products"
@@ -107,37 +144,56 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-            {featuredProducts.map((product) => (
-              <div
-                key={product.id}
-                data-testid={`card-product-${product.id}`}
-                className="bg-background rounded-md border border-border overflow-hidden group"
-              >
-                <SmartImage
-                  src={product.src}
-                  fallbackLabel="Product Image Placeholder"
-                  alt={product.name}
-                  aspectRatio="1/1"
-                  objectFit="cover"
-                  className="w-full group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="p-4">
-                  <h3 className="font-semibold text-foreground text-sm mb-1">{product.name}</h3>
-                  <p className="text-xs text-muted-foreground mb-3 leading-relaxed">{product.blurb}</p>
-                  <a
-                    href={product.ebayUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    data-testid={`link-ebay-product-${product.id}`}
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:opacity-80 transition-opacity"
-                  >
-                    View on eBay <ArrowRight className="w-3 h-3" />
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
+          {loading ? (
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+              {Array.from({ length: 6 }).map((_, i) => <SkeletonCard key={i} />)}
+            </div>
+          ) : listings.length > 0 ? (
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+              {listings.map((listing) => (
+                <a
+                  key={listing.id}
+                  href={listing.ebayUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-testid={`card-product-${listing.id}`}
+                  className="bg-background rounded-md border border-border overflow-hidden group block hover:border-primary/50 transition-colors"
+                >
+                  <div className="aspect-square overflow-hidden bg-muted relative">
+                    {listing.imageUrl ? (
+                      <img
+                        src={listing.imageUrl}
+                        alt={listing.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-muted-foreground text-xs">No image</div>
+                    )}
+                    <span className="absolute top-2 left-2 text-[10px] font-semibold uppercase tracking-wide bg-background/90 text-foreground px-2 py-0.5 rounded">
+                      {conditionShort(listing.condition)}
+                    </span>
+                  </div>
+                  <div className="p-4">
+                    <h3 className="font-semibold text-foreground text-sm mb-1 line-clamp-2 leading-snug">{listing.title}</h3>
+                    <p className="text-primary font-bold text-sm mb-3">
+                      {listing.currency === 'GBP' ? '£' : listing.currency}{listing.price}
+                    </p>
+                    <span className="inline-flex items-center gap-1 text-xs font-semibold text-primary hover:opacity-80 transition-opacity">
+                      View on eBay <ExternalLink className="w-3 h-3" />
+                    </span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12 text-muted-foreground">
+              <p className="mb-4">Browse our full selection on eBay.</p>
+              <Link href="/products" className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:opacity-80">
+                View all listings <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          )}
         </div>
       </section>
 
