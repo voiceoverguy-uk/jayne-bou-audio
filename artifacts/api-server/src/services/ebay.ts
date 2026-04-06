@@ -58,7 +58,10 @@ export async function fetchEbayListings(): Promise<EbayListing[]> {
   }
 
   const url = new URL("https://api.ebay.com/buy/browse/v1/item_summary/search");
-  // eBay Browse API requires seller filtering via the filter param: filter=sellers:{id}
+  // eBay Browse API requires at least one of: q, category_ids, charity_ids, epid, gtin.
+  // category_ids=293 (Consumer Electronics) is broad enough to cover all hi-fi gear.
+  // Seller filter scopes results to Dave's listings only.
+  url.searchParams.set("category_ids", "293");
   url.searchParams.set("filter", `sellers:{${sellerId}}`);
   url.searchParams.set("limit", "50");
   url.searchParams.set("sort", "newlyListed");
