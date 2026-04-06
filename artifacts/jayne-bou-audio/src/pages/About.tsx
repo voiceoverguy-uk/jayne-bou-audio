@@ -1,9 +1,37 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'wouter';
 import { ArrowRight } from 'lucide-react';
 import { SmartImage } from '@/components/ui/smart-image';
 import { jayne, images } from '@/lib/assets';
 
+interface Listing {
+  id: string;
+  title: string;
+  ebayUrl: string;
+}
+
+function useLatestListings(count: number) {
+  const [titles, setTitles] = useState<string[]>([]);
+
+  useEffect(() => {
+    fetch('/api/listings')
+      .then((r) => r.json())
+      .then((d: { listings: Listing[] }) => {
+        setTitles(d.listings.slice(0, count).map((l) => l.title));
+      })
+      .catch(() => {});
+  }, [count]);
+
+  return titles;
+}
+
+function trimTitle(title: string, max = 48): string {
+  return title.length > max ? title.slice(0, max).trimEnd() + '…' : title;
+}
+
 export default function About() {
+  const latestTitles = useLatestListings(3);
+
   return (
     <div className="w-full pt-20">
 
@@ -37,15 +65,36 @@ export default function About() {
                   Jayne Bou Audio started from a simple frustration: buying pre-owned hi-fi equipment online felt like a lottery. Sellers who didn't know their gear, photos that hid faults, and descriptions that told you nothing useful.
                 </p>
                 <p>
-                  I've been living and breathing hi-fi for over twenty years. I know what to listen for, what to look for, and what genuine quality sounds like. So I decided to do it differently.
+                  I've been living and breathing hi-fi for over twenty years. I know what to listen for, what to look for, and what genuine quality sounds like — whether it's a classic British integrated amplifier, a phono stage, a pair of standmount speakers, or a modern streamer. So I decided to do it differently.
                 </p>
                 <p>
-                  Everything listed under the Jayne Bou Audio name has been personally inspected, tested, honestly described, and photographed with care. If something has a scratch, I'll tell you. If the remote is missing, you'll know. That's the deal.
+                  The stock covers a wide range: integrated and pre/power amplifiers, CD players, turntables, phono stages, DACs, streamers, and loudspeakers — from vintage British classics through to current audiophile favourites. Everything listed has been personally inspected, tested, honestly described, and photographed with care. If something has a scratch, I'll tell you. If the remote is missing, you'll know. That's the deal.
                 </p>
                 <p>
                   I also want this to be a resource, not just a shop. The Buyer Guides are here to help you make sense of hi-fi terminology, understand what really matters, and buy with knowledge rather than hope.
                 </p>
               </div>
+
+              {/* Dynamic latest listings teaser */}
+              {latestTitles.length > 0 && (
+                <div className="mt-6 p-4 rounded-md bg-primary/5 border border-primary/20" data-testid="latest-listings-teaser">
+                  <p className="text-sm text-foreground leading-relaxed">
+                    <span className="font-semibold text-primary">Currently listed: </span>
+                    {latestTitles.map((t, i) => (
+                      <span key={i}>
+                        <Link
+                          href="/products"
+                          className="underline underline-offset-2 hover:text-primary transition-colors"
+                        >
+                          {trimTitle(t)}
+                        </Link>
+                        {i < latestTitles.length - 1 ? ', ' : ' '}
+                      </span>
+                    ))}
+                    <span className="text-muted-foreground">and more.</span>
+                  </p>
+                </div>
+              )}
 
               <div className="mt-8 flex flex-col sm:flex-row gap-4">
                 <Link
