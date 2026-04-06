@@ -14,6 +14,14 @@ interface Listing {
   ebayUrl: string;
 }
 
+const heroImages = [
+  { src: '/images/hero-room.png',             alt: 'Dramatic hi-fi listening room with floor-standing speakers and warm atmospheric lighting' },
+  { src: '/images/hero-fireplace-vinyl.webp', alt: 'Floor-standing speakers flanking a fireplace with vinyl records and a full hi-fi rack' },
+  { src: '/images/hero-listening-room.webp',  alt: 'Elegant listening room with speakers either side of a fireplace and vinyl records on the coffee table' },
+  { src: '/images/hero-bookshelf-setup.webp', alt: 'Bookshelf speakers on stands with a turntable and stacked hi-fi components' },
+  { src: '/images/hero-fireplace-system.webp',alt: 'Floor-standing speakers and a hi-fi system rack flanking a glowing fireplace' },
+];
+
 const guideCards = [
   { title: 'What Do Watts Actually Mean?', teaser: 'Power ratings can be confusing. Here\'s what really matters for your listening room.', src: images.learnWatts, slug: 'learn-watts' },
   { title: 'Active vs Passive Speakers', teaser: 'Which approach is right for you? We break it down simply.', src: images.learnActiveVsPassive, slug: 'learn-active-vs-passive' },
@@ -53,6 +61,12 @@ function conditionShort(condition: string): string {
 export default function Home() {
   const [listings, setListings] = useState<Listing[]>([]);
   const [loading, setLoading] = useState(true);
+  const [heroIndex, setHeroIndex] = useState(0);
+
+  useEffect(() => {
+    const t = setInterval(() => setHeroIndex((i) => (i + 1) % heroImages.length), 5500);
+    return () => clearInterval(t);
+  }, []);
 
   useEffect(() => {
     fetch('/api/listings')
@@ -69,14 +83,17 @@ export default function Home() {
 
       {/* HERO */}
       <section className="relative min-h-[88vh] flex items-center overflow-hidden bg-foreground" data-testid="section-hero">
-        {/* Full-bleed faded room photo */}
+        {/* Crossfading hero images */}
         <div className="absolute inset-0 z-0">
-          <img
-            src="/images/hero-room.png"
-            alt=""
-            aria-hidden="true"
-            className="w-full h-full object-cover object-center opacity-30"
-          />
+          {heroImages.map((img, i) => (
+            <img
+              key={img.src}
+              src={img.src}
+              alt=""
+              aria-hidden="true"
+              className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ${i === heroIndex ? 'opacity-30' : 'opacity-0'}`}
+            />
+          ))}
           {/* Gradient: strong dark on left for text legibility, lighter on right */}
           <div className="absolute inset-0 bg-gradient-to-r from-foreground/90 via-foreground/60 to-foreground/30" />
         </div>
@@ -105,6 +122,17 @@ export default function Home() {
               >
                 Buyer Guides
               </Link>
+            </div>
+            {/* Slide indicators */}
+            <div className="flex gap-2 mt-10">
+              {heroImages.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setHeroIndex(i)}
+                  aria-label={`Show image ${i + 1}`}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${i === heroIndex ? 'w-6 bg-white' : 'w-1.5 bg-white/30 hover:bg-white/50'}`}
+                />
+              ))}
             </div>
           </div>
         </div>
