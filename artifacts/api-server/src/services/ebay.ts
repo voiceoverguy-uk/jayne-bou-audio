@@ -43,9 +43,9 @@ export async function fetchEbayListings(): Promise<EbayListing[]> {
 
   const clientId = process.env.EBAY_CLIENT_ID;
   const clientSecret = process.env.EBAY_CLIENT_SECRET;
-  const sellerId = process.env.EBAY_SELLER_ID ?? "jaynebouaudio";
+  const sellerId = process.env.EBAY_SELLER_ID;
 
-  if (!clientId || !clientSecret) {
+  if (!clientId || !clientSecret || !sellerId) {
     throw new Error("EBAY_CREDENTIALS_MISSING");
   }
 
