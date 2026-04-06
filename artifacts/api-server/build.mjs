@@ -89,23 +89,6 @@ async function buildAll() {
   const distDir = path.resolve(artifactDir, "dist");
   await rm(distDir, { recursive: true, force: true });
 
-  // ── Vercel serverless function (CJS, self-contained, no pino workers) ──
-  const vercelOutFile = path.resolve(artifactDir, "../../api/index.js");
-  await esbuild({
-    entryPoints: [path.resolve(artifactDir, "src/vercel-entry.ts")],
-    platform: "node",
-    bundle: true,
-    format: "cjs",
-    outfile: vercelOutFile,
-    external: EXTERNALS,
-    logLevel: "info",
-    // esbuild CJS output uses exports["default"]; re-assign to module.exports
-    // so Vercel receives the Express app directly as the handler.
-    footer: { js: "module.exports = exports[\"default\"] ?? module.exports;" },
-  });
-  console.log("✓ Vercel function →", vercelOutFile);
-
-  // ── Local dev server (ESM + pino) ──
   await esbuild({
     entryPoints: [
       path.resolve(artifactDir, "src/index.ts"),
