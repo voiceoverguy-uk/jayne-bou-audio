@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ArrowRight, ExternalLink, ShoppingBag } from 'lucide-react';
 
-const EBAY_STORE_URL = 'https://www.ebay.co.uk/str/jaynebouaudio';
+const EBAY_STORE_URL = 'https://www.ebay.co.uk/usr/davsande_3';
 
 interface Listing {
   id: string;
