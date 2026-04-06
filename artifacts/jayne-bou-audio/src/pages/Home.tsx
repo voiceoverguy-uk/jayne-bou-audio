@@ -68,45 +68,40 @@ export default function Home() {
     <div className="w-full">
 
       {/* HERO */}
-      <section className="relative min-h-[88vh] flex items-center overflow-hidden bg-card" data-testid="section-hero">
-        <div className="absolute inset-0 z-0 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent z-10" />
-          <div className="w-full h-full flex items-end justify-end">
-            <div className="w-full md:w-[62%] h-full">
-              <SmartImage
-                src={jayne.heroListening}
-                fallbackLabel="Hero Illustration Placeholder"
-                alt="Jayne enjoying hi-fi audio"
-                aspectRatio="11/8"
-                objectFit="cover"
-                className="w-full h-full absolute inset-0"
-                priority
-              />
-            </div>
-          </div>
+      <section className="relative min-h-[88vh] flex items-center overflow-hidden bg-foreground" data-testid="section-hero">
+        {/* Full-bleed faded room photo */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/hero-room.png"
+            alt=""
+            aria-hidden="true"
+            className="w-full h-full object-cover object-center opacity-30"
+          />
+          {/* Gradient: strong dark on left for text legibility, lighter on right */}
+          <div className="absolute inset-0 bg-gradient-to-r from-foreground/90 via-foreground/60 to-foreground/30" />
         </div>
 
         <div className="relative z-20 max-w-7xl mx-auto px-6 md:px-10 py-32 md:py-40">
           <div className="max-w-xl">
-            <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-4">Jayne Bou Audio</p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-foreground mb-6">
+            <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-4" style={{color:'hsl(109,55%,62%)'}}>Jayne Bou Audio</p>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white mb-6">
               Pre-Owned Hi-Fi,<br />Properly Done
             </h1>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-10">
+            <p className="text-lg text-white/70 leading-relaxed mb-10">
               Carefully sourced, thoroughly tested, and honestly described hi-fi equipment. Your friendly guide to buying pre-owned audio gear with confidence.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/products"
                 data-testid="link-hero-products"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md bg-primary text-primary-foreground font-semibold hover:opacity-90 transition-opacity"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md bg-primary text-white font-semibold hover:opacity-90 transition-opacity"
               >
                 Browse Equipment <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 href="/learn"
                 data-testid="link-hero-learn"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md border border-border text-foreground font-semibold hover:bg-accent transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md border border-white/30 text-white font-semibold hover:bg-white/10 transition-colors"
               >
                 Buyer Guides
               </Link>
