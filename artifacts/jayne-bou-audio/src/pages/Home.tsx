@@ -259,13 +259,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 md:px-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
             <div>
-              <SmartImage
-                src={jayne.packing}
-                fallbackLabel="Packaging Scene Placeholder"
-                alt="Careful packaging and inspection"
-                aspectRatio="9/7"
-                objectFit="cover"
-                className="w-full rounded-md"
+              <img
+                src="/images/boxed.webp"
+                alt="Integrated amplifier carefully packed with foam and bubble wrap ready to ship"
+                className="w-full rounded-md object-cover"
               />
             </div>
             <div>
