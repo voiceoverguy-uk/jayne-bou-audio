@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ArrowRight, ExternalLink, ShoppingBag } from 'lucide-react';
+import { useSeo } from '@/hooks/useSeo';
 
 const EBAY_STORE_URL = 'https://www.ebay.co.uk/usr/davsande_3';
 
@@ -49,6 +50,11 @@ function SkeletonCard() {
 }
 
 export default function Products() {
+  useSeo({
+    title: 'Pre-Owned Hi-Fi Equipment for Sale',
+    description: 'Browse pre-owned amplifiers, speakers, turntables and hi-fi separates. All items tested, honestly described, and double-boxed for safe UK delivery.',
+    canonical: 'https://jaynebou.com/products',
+  });
   const [listings, setListings] = useState<Listing[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

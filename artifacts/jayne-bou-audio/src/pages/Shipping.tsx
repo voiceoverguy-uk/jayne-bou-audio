@@ -2,6 +2,7 @@ import { Link } from 'wouter';
 import { ArrowRight, PackageCheck, Camera, ClipboardList, BadgeCheck } from 'lucide-react';
 import { SmartImage } from '@/components/ui/smart-image';
 import { jayne, images } from '@/lib/assets';
+import { useSeo } from '@/hooks/useSeo';
 
 const steps = [
   { icon: ClipboardList, title: 'Inspection', body: 'Every item is inspected against a consistent checklist before listing. Electronics are tested. Mechanics are verified. Cosmetics are graded and documented honestly.' },
@@ -11,6 +12,11 @@ const steps = [
 ];
 
 export default function Shipping() {
+  useSeo({
+    title: 'Shipping & Packaging Promise',
+    description: 'Every item double-boxed with professional materials and photographed before dispatch. Safe, insured UK delivery — if it wouldn\'t survive our packing, it doesn\'t leave.',
+    canonical: 'https://jaynebou.com/shipping',
+  });
   return (
     <div className="w-full pt-20">
 

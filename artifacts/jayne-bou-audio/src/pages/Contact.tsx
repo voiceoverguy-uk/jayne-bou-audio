@@ -3,6 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { SmartImage } from '@/components/ui/smart-image';
 import { jayne } from '@/lib/assets';
+import { useSeo } from '@/hooks/useSeo';
 import {
   Form,
   FormControl,
@@ -39,6 +40,11 @@ const API_URL = import.meta.env.DEV
   : ((import.meta.env.VITE_API_URL as string | undefined) ?? '');
 
 export default function Contact() {
+  useSeo({
+    title: 'Get in Touch',
+    description: 'Have a question about a listing or need advice on what to buy? Get in touch with Jayne Bou Audio — happy to help with any hi-fi question, big or small.',
+    canonical: 'https://jaynebou.com/contact',
+  });
   const [submitted, setSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
 

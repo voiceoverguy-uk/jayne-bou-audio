@@ -3,6 +3,7 @@ import { Link } from 'wouter';
 import { ArrowRight } from 'lucide-react';
 import { SmartImage } from '@/components/ui/smart-image';
 import { jayne, images } from '@/lib/assets';
+import { useSeo } from '@/hooks/useSeo';
 
 interface Listing {
   id: string;
@@ -30,6 +31,11 @@ function trimTitle(title: string, max = 48): string {
 }
 
 export default function About() {
+  useSeo({
+    title: 'About Jayne',
+    description: 'Meet Jayne — hi-fi enthusiast with over two decades of experience helping fellow music lovers find brilliant pre-owned audio gear, based in Wakefield, West Yorkshire.',
+    canonical: 'https://jaynebou.com/about',
+  });
   const latestTitles = useLatestListings(3);
 
   return (

@@ -1,6 +1,7 @@
 import { ArrowRight } from 'lucide-react';
 import { SmartImage } from '@/components/ui/smart-image';
 import { images } from '@/lib/assets';
+import { useSeo } from '@/hooks/useSeo';
 
 const guides = [
   {
@@ -42,6 +43,11 @@ const guides = [
 ];
 
 export default function Learn() {
+  useSeo({
+    title: 'Hi-Fi Buying Guides & Advice',
+    description: 'Plain-English guides to buying pre-owned hi-fi. Understand amplifier power ratings, valve vs transistor, active vs passive speakers, and what warm vs bright sound really means.',
+    canonical: 'https://jaynebou.com/learn',
+  });
   return (
     <div className="w-full pt-20">
       <section className="py-14 md:py-20 bg-background" data-testid="section-learn-header">

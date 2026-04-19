@@ -3,6 +3,7 @@ import { Link } from 'wouter';
 import { ArrowRight, ShieldCheck, Truck, Star, Search, ExternalLink } from 'lucide-react';
 import { SmartImage } from '@/components/ui/smart-image';
 import { jayne, images } from '@/lib/assets';
+import { useSeo } from '@/hooks/useSeo';
 
 interface Listing {
   id: string;
@@ -59,6 +60,12 @@ function conditionShort(condition: string): string {
 }
 
 export default function Home() {
+  useSeo({
+    title: 'Pre-Owned Hi-Fi Equipment, Properly Done',
+    description: 'Buy pre-owned hi-fi with confidence. Carefully sourced, thoroughly tested amplifiers, speakers, turntables and more from a trusted UK seller. 4.4★ eBay feedback from 247 reviews.',
+    canonical: 'https://jaynebou.com/',
+  });
+
   const [listings, setListings] = useState<Listing[]>([]);
   const [loading, setLoading] = useState(true);
   const [heroIndex, setHeroIndex] = useState(0);
