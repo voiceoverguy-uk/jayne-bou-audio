@@ -3,6 +3,7 @@ import { Link } from 'wouter';
 import { ArrowRight, ShieldCheck, Truck, Star, Search, ExternalLink } from 'lucide-react';
 import { SmartImage } from '@/components/ui/smart-image';
 import { JayneBlink } from '@/components/jayne/JayneBlink';
+import { AnimatedJayne } from '@/components/ui/animated-jayne';
 import { jayne, images } from '@/lib/assets';
 import { useSeo } from '@/hooks/useSeo';
 
@@ -151,13 +152,14 @@ export default function Home() {
       <section className="py-16 md:py-20 bg-background" data-testid="section-intro">
         <div className="max-w-7xl mx-auto px-6 md:px-10">
           <div className="flex flex-col md:flex-row items-center gap-8 md:gap-14 max-w-4xl mx-auto">
-            <div className="flex-shrink-0 w-40 md:w-52">
-              <img
-                src={jayne.expressive}
-                alt="Jayne Bou character illustration"
-                className="w-full h-auto object-contain drop-shadow-md"
-              />
-            </div>
+            <AnimatedJayne
+              staticSrc={jayne.expressive}
+              animSrc={jayne.anim.listen}
+              alt="Jayne Bou character illustration"
+              className="flex-shrink-0 w-40 md:w-52 cursor-pointer"
+              trigger="inview"
+              delay={200}
+            />
             <div>
               <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">Hi, I'm Jayne.</h2>
               <p className="text-base text-muted-foreground leading-relaxed">
@@ -173,10 +175,12 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 md:px-10">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
             <div className="flex items-center gap-5">
-              <img
-                src={jayne.tech}
+              <AnimatedJayne
+                staticSrc={jayne.tech}
+                animSrc={jayne.anim.point}
                 alt="Jayne Bou — tech expert inspecting equipment"
-                className="w-14 h-auto object-contain flex-shrink-0 drop-shadow"
+                className="w-14 flex-shrink-0 cursor-pointer"
+                trigger="hover"
               />
               <div>
                 <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-2">Currently Listed</p>
@@ -359,10 +363,12 @@ export default function Home() {
       <section className="py-14 bg-primary" data-testid="section-cta">
         <div className="max-w-7xl mx-auto px-6 md:px-10 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-6">
-            <img
-              src={jayne.contact}
+            <AnimatedJayne
+              staticSrc={jayne.contact}
+              animSrc={jayne.anim.blink}
               alt="Jayne Bou character illustration"
-              className="w-20 h-auto object-contain flex-shrink-0 drop-shadow"
+              className="w-20 flex-shrink-0"
+              trigger="always"
             />
             <div>
               <h2 className="text-xl md:text-2xl font-bold text-primary-foreground">Got a question? We'd love to help.</h2>
