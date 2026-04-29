@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'wouter';
 import { ArrowRight, ShieldCheck, Truck, Star, Search, ExternalLink } from 'lucide-react';
 import { SmartImage } from '@/components/ui/smart-image';
+import { JayneBlink } from '@/components/jayne/JayneBlink';
 import { jayne, images } from '@/lib/assets';
 import { useSeo } from '@/hooks/useSeo';
 
@@ -253,10 +254,10 @@ export default function Home() {
               <h2 className="text-2xl md:text-3xl font-bold text-foreground">Buying with Confidence</h2>
             </div>
             <div className="flex-shrink-0 mx-auto lg:mx-0 w-36 md:w-44">
-              <img
-                src={jayne.trust}
+              <JayneBlink
+                baseSrc={jayne.default}
+                blinkSrc={jayne.trust}
                 alt="Jayne Bou — trusted seller character illustration"
-                className="w-full h-auto object-contain drop-shadow-md"
               />
             </div>
           </div>
