@@ -1,24 +1,25 @@
 const base = import.meta.env.BASE_URL;
 
 export const logo = {
-  svg: `${base}logo/jayne-bou-audio-logo.svg`,
-  png: `${base}logo/jayne-bou-audio-logo.png`,
-  mark: `${base}logo/jayne-bou-audio-mark.png`,
+  svg:   `${base}logo/jayne-bou-audio-logo.svg`,
+  png:   `${base}logo/jayne-bou-audio-logo.png`,
+  white: `${base}logo/jayne-bou-audio-logo-white.png`,
+  mark:  `${base}logo/jayne-bou-audio-mark.png`,
 };
 
 export const jayne = {
-  default: `${base}jayne/jayne-default.png`,
-  expressive: `${base}jayne/jayne-expressive.png`,
-  guide: `${base}jayne/jayne-guide.png`,
-  trust: `${base}jayne/jayne-trust.png`,
-  tech: `${base}jayne/jayne-tech.png`,
-  teacher: `${base}jayne/jayne-teacher.png`,
-  heroListening: `${base}jayne/jayne-hero-listening.png`,
-  packing: `${base}jayne/jayne-packing.png`,
-  contact: `${base}jayne/jayne-contact.png`,
+  default:       `${base}jayne/jayne-1.png`,
+  expressive:    `${base}jayne/jayne-2.png`,
+  guide:         `${base}jayne/jayne-3.png`,
+  trust:         `${base}jayne/jayne-4.png`,
+  tech:          `${base}jayne/jayne-5.png`,
+  teacher:       `${base}jayne/jayne-3.png`,
+  heroListening: `${base}jayne/jayne-1.png`,
+  packing:       `${base}jayne/jayne-2.png`,
+  contact:       `${base}jayne/jayne-4.png`,
   anim: {
-    blink: `${base}jayne/anim/jayne-blink.gif`,
-    point: `${base}jayne/anim/jayne-point.gif`,
+    blink:  `${base}jayne/anim/jayne-blink.gif`,
+    point:  `${base}jayne/anim/jayne-point.gif`,
     listen: `${base}jayne/anim/jayne-listen.gif`,
   },
 };
@@ -33,11 +34,11 @@ export const products = {
 };
 
 export const images = {
-  learnWatts: `${base}images/learn-watts.jpg`,
-  learnActiveVsPassive: `${base}images/learn-active-vs-passive.jpg`,
-  learnValveVsTransistor: `${base}images/learn-valve-vs-transistor.jpg`,
-  learnWarmVsBright: `${base}images/learn-warm-vs-bright.jpg`,
-  aboutHero: `${base}images/about-hero.jpg`,
-  shippingPackaging: `${base}images/shipping-packaging.jpg`,
-  videoPlaceholder: `${base}images/video-placeholder.jpg`,
+  learnWatts:          `${base}images/learn-watts.jpg`,
+  learnActiveVsPassive:`${base}images/learn-active-vs-passive.jpg`,
+  learnValveVsTransistor:`${base}images/learn-valve-vs-transistor.jpg`,
+  learnWarmVsBright:   `${base}images/learn-warm-vs-bright.jpg`,
+  aboutHero:           `${base}images/about-hero.webp`,
+  shippingPackaging:   `${base}images/shipping-packaging.jpg`,
+  videoPlaceholder:    `${base}images/video-placeholder.jpg`,
 };

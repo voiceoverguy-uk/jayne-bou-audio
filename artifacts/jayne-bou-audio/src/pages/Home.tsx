@@ -16,11 +16,12 @@ interface Listing {
 }
 
 const heroImages = [
-  { src: '/images/hero-room.png',             alt: 'Dramatic hi-fi listening room with floor-standing speakers and warm atmospheric lighting' },
-  { src: '/images/hero-fireplace-vinyl.webp', alt: 'Floor-standing speakers flanking a fireplace with vinyl records and a full hi-fi rack' },
-  { src: '/images/hero-listening-room.webp',  alt: 'Elegant listening room with speakers either side of a fireplace and vinyl records on the coffee table' },
-  { src: '/images/hero-bookshelf-setup.webp', alt: 'Bookshelf speakers on stands with a turntable and stacked hi-fi components' },
-  { src: '/images/hero-fireplace-system.webp',alt: 'Floor-standing speakers and a hi-fi system rack flanking a glowing fireplace' },
+  { src: '/images/hero-1.webp', alt: 'Hi-fi listening room with floor-standing speakers and warm atmospheric lighting' },
+  { src: '/images/hero-2.webp', alt: 'Elegant hi-fi setup with floor-standing speakers and a glowing fireplace' },
+  { src: '/images/hero-3.webp', alt: 'Bookshelf hi-fi system with turntable, amplifier and speakers' },
+  { src: '/images/hero-4.webp', alt: 'Pre-owned hi-fi separates rack with turntable and integrated amplifier' },
+  { src: '/images/hero-5.webp', alt: 'Floor-standing speakers flanking a fireplace in a cosy listening room' },
+  { src: '/images/hero-6.webp', alt: 'Hi-fi listening room with vinyl records and premium audio equipment' },
 ];
 
 const guideCards = [

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="300" viewBox="0 0 1200 300" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .title { font-family: Arial, Helvetica, sans-serif; font-size: 120px; letter-spacing: 8px; fill: #1a1a1a; }
+    .subtitle { font-family: Arial, Helvetica, sans-serif; font-size: 50px; letter-spacing: 12px; fill: #c8a96a; }
+    .line { stroke: #c8a96a; stroke-width: 4; }
+  </style>
+
+  <!-- Main text -->
+  <text x="50%" y="120" text-anchor="middle" class="title">JAYNE BOU</text>
+
+  <!-- Lines -->
+  <line x1="150" y1="180" x2="450" y2="180" class="line"/>
+  <line x1="750" y1="180" x2="1050" y2="180" class="line"/>
+
+  <!-- Subtitle -->
+  <text x="50%" y="210" text-anchor="middle" class="subtitle">AUDIO</text>
+</svg>
