@@ -149,11 +149,20 @@ export default function Home() {
       {/* INTRO */}
       <section className="py-16 md:py-20 bg-background" data-testid="section-intro">
         <div className="max-w-7xl mx-auto px-6 md:px-10">
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">Hi, I'm Jayne.</h2>
-            <p className="text-base text-muted-foreground leading-relaxed">
-              I've been passionate about hi-fi audio for over two decades. Jayne Bou Audio is my way of helping fellow enthusiasts find brilliant pre-owned gear without the usual guesswork. Everything I sell is something I'd be happy buying myself.
-            </p>
+          <div className="flex flex-col md:flex-row items-center gap-8 md:gap-14 max-w-4xl mx-auto">
+            <div className="flex-shrink-0 w-40 md:w-52">
+              <img
+                src={jayne.expressive}
+                alt="Jayne Bou character illustration"
+                className="w-full h-auto object-contain drop-shadow-md"
+              />
+            </div>
+            <div>
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">Hi, I'm Jayne.</h2>
+              <p className="text-base text-muted-foreground leading-relaxed">
+                I've been passionate about hi-fi audio for over two decades. Jayne Bou Audio is my way of helping fellow enthusiasts find brilliant pre-owned gear without the usual guesswork. Everything I sell is something I'd be happy buying myself.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -162,9 +171,16 @@ export default function Home() {
       <section className="py-16 md:py-24 bg-card border-t border-border" data-testid="section-products">
         <div className="max-w-7xl mx-auto px-6 md:px-10">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-2">Currently Listed</p>
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground">Latest Equipment</h2>
+            <div className="flex items-center gap-5">
+              <img
+                src={jayne.tech}
+                alt="Jayne Bou — tech expert inspecting equipment"
+                className="w-14 h-auto object-contain flex-shrink-0 drop-shadow"
+              />
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-2">Currently Listed</p>
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground">Latest Equipment</h2>
+              </div>
             </div>
             <Link
               href="/products"
@@ -231,9 +247,18 @@ export default function Home() {
       {/* WHY BUY */}
       <section className="py-16 md:py-24 bg-background border-t border-border" data-testid="section-why-buy">
         <div className="max-w-7xl mx-auto px-6 md:px-10">
-          <div className="text-center mb-12">
-            <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-2">Why Choose Us</p>
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground">Buying with Confidence</h2>
+          <div className="flex flex-col lg:flex-row lg:items-center gap-12 lg:gap-16 mb-12">
+            <div className="flex-1 text-center lg:text-left">
+              <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-2">Why Choose Us</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground">Buying with Confidence</h2>
+            </div>
+            <div className="flex-shrink-0 mx-auto lg:mx-0 w-36 md:w-44">
+              <img
+                src={jayne.trust}
+                alt="Jayne Bou — trusted seller character illustration"
+                className="w-full h-auto object-contain drop-shadow-md"
+              />
+            </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {trustPoints.map((point) => (
@@ -250,10 +275,17 @@ export default function Home() {
       {/* GUIDES TEASER */}
       <section className="py-16 md:py-24 bg-card border-t border-border" data-testid="section-guides">
         <div className="max-w-7xl mx-auto px-6 md:px-10">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-2">Learn More</p>
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground">Buyer Guides</h2>
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10">
+            <div className="flex items-center gap-6">
+              <img
+                src={jayne.guide}
+                alt="Jayne Bou — your audio guide character illustration"
+                className="w-16 h-auto object-contain flex-shrink-0 drop-shadow"
+              />
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-2">Learn More</p>
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground">Buyer Guides</h2>
+              </div>
             </div>
             <Link
               href="/learn"
@@ -325,9 +357,16 @@ export default function Home() {
       {/* CONTACT CTA */}
       <section className="py-14 bg-primary" data-testid="section-cta">
         <div className="max-w-7xl mx-auto px-6 md:px-10 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div>
-            <h2 className="text-xl md:text-2xl font-bold text-primary-foreground">Got a question? We'd love to help.</h2>
-            <p className="text-primary-foreground/80 mt-1 text-sm">Whether you're a first-time buyer or seasoned audiophile — just ask.</p>
+          <div className="flex items-center gap-6">
+            <img
+              src={jayne.contact}
+              alt="Jayne Bou character illustration"
+              className="w-20 h-auto object-contain flex-shrink-0 drop-shadow"
+            />
+            <div>
+              <h2 className="text-xl md:text-2xl font-bold text-primary-foreground">Got a question? We'd love to help.</h2>
+              <p className="text-primary-foreground/80 mt-1 text-sm">Whether you're a first-time buyer or seasoned audiophile — just ask.</p>
+            </div>
           </div>
           <Link
             href="/contact"
