@@ -333,12 +333,12 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
             <div>
               <img
-                src="/images/boxed.webp"
-                alt="Integrated amplifier carefully packed with foam and bubble wrap ready to ship"
+                src="/images/packing-station.webp"
+                alt="Jayne Bou Audio packing bench: fresh sturdy cardboard box with white foam supports, tape dispenser and a bin of packing peanuts ready in the background"
                 className="w-full rounded-md object-cover"
               />
               <p className="mt-3 text-xs text-muted-foreground italic text-center">
-                A real order on its way out — double-boxed, foam-padded, bubble-wrapped.
+                Our packing bench — fresh cardboard, foam supports, tape and packing peanuts, ready for the next order.
               </p>
             </div>
             <div>
