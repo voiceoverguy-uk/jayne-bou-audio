@@ -337,6 +337,9 @@ export default function Home() {
                 alt="Integrated amplifier carefully packed with foam and bubble wrap ready to ship"
                 className="w-full rounded-md object-cover"
               />
+              <p className="mt-3 text-xs text-muted-foreground italic text-center">
+                A real order on its way out — double-boxed, foam-padded, bubble-wrapped.
+              </p>
             </div>
             <div>
               <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-3">Every Order</p>
