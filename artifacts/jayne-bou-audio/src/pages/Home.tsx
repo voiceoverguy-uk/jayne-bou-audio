@@ -334,11 +334,11 @@ export default function Home() {
             <div>
               <img
                 src="/images/packing-station.webp"
-                alt="Jayne Bou Audio packing bench: fresh sturdy cardboard box with white foam supports, tape dispenser and a bin of packing peanuts ready in the background"
+                alt="A sealed cardboard box on the Jayne Bou Audio packing bench, seams reinforced with clear tape and a red FRAGILE - Handle With Care sticker on the side, with a stack of flat boxes, bubble wrap and packing peanuts in the background"
                 className="w-full rounded-md object-cover"
               />
               <p className="mt-3 text-xs text-muted-foreground italic text-center">
-                Our packing bench — fresh cardboard, foam supports, tape and packing peanuts, ready for the next order.
+                A real order on its way out — taped tight, FRAGILE labelled, with bubble wrap and peanuts on hand for the next one.
               </p>
             </div>
             <div>
