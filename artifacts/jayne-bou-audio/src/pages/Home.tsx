@@ -338,7 +338,7 @@ export default function Home() {
                 className="w-full rounded-md object-cover"
               />
               <p className="mt-3 text-xs text-muted-foreground italic text-center">
-                A real order on its way out — taped tight, FRAGILE labelled, with bubble wrap and peanuts on hand for the next one.
+                Fresh cardboard, tape and packing peanuts — we do it right.
               </p>
             </div>
             <div>
